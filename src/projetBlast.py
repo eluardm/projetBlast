@@ -19,7 +19,7 @@ tps1 = time()
 # Dictionnaire de paramètres (Valeurs par défaut)
 parametres = {
     "requete": None,
-    "bdd": "../data/BDD_2202_CellTumorAntiGene.saved",
+    "bdd": "../data/testBDD.fasta",
     "matrice": "../data/blosum62.txt",
     "version": 1,
     "w": 3,
