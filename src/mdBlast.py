@@ -49,7 +49,7 @@ def verifParametres(args, parametres):
                 parametres["matrice"] = args.m
         else:
             sys.exit("erreur: Fichier matrice de score inexistant.")
-    elif os.path.isfile("./blosum62.txt"):
+    elif os.path.isfile(parametres["matrice"]):
         pass
     else:
         sys.exit("erreur: Fichier matrice de score inexistant.")
