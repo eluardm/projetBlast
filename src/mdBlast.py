@@ -309,9 +309,9 @@ class HSP:
         """
 
         for i in range(0,  self.length + 1):
-            if (seq[i] == seqbdd[i]):
+            if (seq[self.r_start+i] == seqbdd[self.q_start+i]):
                 self.identite += 1
-            if(mat.score(seq[i], seqbdd[i]) >= 0):
+            if(mat.score(seq[self.r_start+i], seqbdd[self.q_start+i]) >= 0):
                 self.similarite += 1
         self.identite = self.identite*100.0/self.length
         self.similarite = self.similarite*100.0/self.length
@@ -331,10 +331,11 @@ class HSP:
         """
         Format l'écriture des informations du HSP dans un fichier.
         """
-
         strHSP = "Score : {}\nId. : {:4.2f}%\nSim. : {:4.2f}%\nEvalue : {}\n\n".format(self.score_tot, self.identite, self.similarite, self.eval)
         seqr = seq[1]
         i = 0
+        seqr = seqr[self.r_start:self.r_end]
+        seqbdd = seqbdd[self.q_start:self.q_end]
         for i in range(int(self.length/60)):
             strHSP += "{:6}{:5} {} {:5}\n".format(seq[0], self.r_start+i*60+1, seqr[:60], self.r_start+i*60+60)
             strHSP += "{:6}{:5} {} {:5}\n".format(self.hit.infoMotBDD[0], self.q_start+i*60+1, seqbdd[:60], self.q_start+i*60+60)
@@ -359,7 +360,7 @@ class BDD:
 
     def __init__(self, fileFasta, W=3):
         self.sizeBDD = 0
-        self.fileFasta = fileFasta
+        self.fileFasta = fileFast
         self.dico_seqBDD = self.readFasta()
         self.dico_3wBDD = self.create3wBDD(W)
 

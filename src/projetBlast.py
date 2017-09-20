@@ -103,6 +103,7 @@ else:
     bdd = loadBDDSaved(parametres["bdd"])
     print("OK\n")
 
+
 # Recherche des hits et extension----------------------------------------------------------
 print("BLAST en cours... \n")
 # Classe au fur et à mesure les HSP par ordre croissant
@@ -115,8 +116,9 @@ for motReq in dicoWRequete:
             for infoMotBDD in bdd.dico_3wBDD[motReq]:
                 # infoMotBDD => (idSequenceBDD, position)
                 # Si le hit est présent dans un HSP existant, alors il est ignoré.
-                # Approximation pour gagner du temps de calcul.
+                # Approximation pour gagner du temps de calcul.                
                 if(not (infoMotBDD[0] in dicoHSP and (dicoHSP[infoMotBDD[0]].q_start <= infoMotBDD[1] <= dicoHSP[infoMotBDD[0]].q_end) and (dicoHSP[infoMotBDD[0]].r_start <= posMotReq <= dicoHSP[infoMotBDD[0]].r_end))):
+
 # Extension des hits---------------------------------------------------------
                     hsp_tmp = HSP(motReq, posMotReq, infoMotBDD)
                     hsp_tmp.extension(seqReq[1], bdd.dico_seqBDD[infoMotBDD[0]], blosum62)
